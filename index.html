@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charan Natraj N - DevOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --accent: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 6rem 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cta-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stats-section {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .about-text {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .about-text h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-dim);
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .about-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-container {
+            position: relative;
+        }
+
+        .timeline-item {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-left-color: var(--secondary);
+        }
+
+        .timeline-year {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-skill {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-description {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .contact-details h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-details ul {
+            list-style: none;
+        }
+
+        .contact-details li {
+            color: var(--text-dim);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .contact-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input, .form-textarea {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .footer-copyright {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .footer-credits {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-credit-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-credit-link:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.3rem; }
+            .nav-links { display: none; }
+            .contact-content { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span>⚡</span>
+                <span>Charan Natraj N</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Charan Natraj N</h1>
+            <p class="subtitle">DevOps Engineer & Data Analytics Specialist</p>
+            <p>Building efficient CI/CD pipelines and delivering data-driven solutions</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-primary">View My Work</a>
+                <a href="#contact" class="cta-secondary">Get In Touch</a>
+            </div>
+            
+            <div class="stats-section">
+                <div class="stat-card">
+                    <span class="stat-number">8.7</span>
+                    <span class="stat-label">CGPA</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Internships</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Electronics & Communication Engineering graduate passionate about DevOps and automation</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Professional Summary</h3>
+                <p>Results-driven Electronics and Communication Engineering graduate from VIT Chennai with hands-on experience in DevOps automation and data analytics. I specialize in building efficient CI/CD pipelines, conducting thorough code quality analysis, and implementing process optimizations that deliver measurable efficiency gains.</p>
+                <p>My professional journey includes a transformative internship at Apple Inc. through Introlligent, where I streamlined software delivery workflows using Jenkins and Git. I combine strong technical skills in Java, SQL, and embedded systems with proven abilities in cross-functional collaboration, analytical problem-solving, and delivering client-focused solutions in fast-paced environments.</p>
+            </div>
+            
+            <div class="about-cards">
+                <div class="about-card">
+                    <h4>🎯 Focus Areas</h4>
+                    <p>DevOps automation, CI/CD pipeline development, code quality analysis, data analytics, and embedded systems design with a commitment to continuous improvement and innovation.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h4>💡 Core Strengths</h4>
+                    <p>Analytical thinking, team collaboration, adaptability, and problem-solving with a track record of delivering 10-15% efficiency improvements in production environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">A comprehensive toolkit for modern software development and DevOps</p>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>DevOps & Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">PMD</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Vagrant VM</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Embedded Systems</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Keil ARM</span>
+                    <span class="skill-tag">μVision</span>
+                    <span class="skill-tag">TinkerCAD</span>
+                    <span class="skill-tag">KiCAD</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Data & Analytics</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">SQL Management</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">NLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">My journey through the tech industry</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-year">Aug 2025 - Sep 2025</div>
+                <h3 class="timeline-title">DevOps Intern</h3>
+                <div class="timeline-company">Introlligent (Client: Apple Inc.)</div>
+                <p class="timeline-description">
+                    Implemented comprehensive CI/CD pipelines using Jenkins for Apple's software delivery processes, managed Git/GitHub workflows to ensure code quality and team collaboration efficiency, conducted PMD code analysis to identify bugs and maintainability issues, and optimized build processes improving deployment reliability for client projects.
+                </p>
+                <div class="timeline-skills">
+                    <span class="timeline-skill">Jenkins</span>
+                    <span class="timeline-skill">Git</span>
+                    <span class="timeline-skill">GitHub</span>
+                    <span class="timeline-skill">PMD</span>
+                    <span class="timeline-skill">CI/CD</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">Oct 2023 - Nov 2023</div>
+                <h3 class="timeline-title">Engineering Intern</h3>
+                <div class="timeline-company">Joy Electronics</div>
+                <p class="timeline-description">
+                    Analyzed sensor data for PCB quality assurance using standardized protocols, identified production inefficiencies achieving 10-15% throughput improvement, and documented key metrics supporting process audits and performance tracking.
+                </p>
+                <div class="timeline-skills">
+                    <span class="timeline-skill">Data Analysis</span>
+                    <span class="timeline-skill">PCB Testing</span>
+                    <span class="timeline-skill">Quality Assurance</span>
+                    <span class="timeline-skill">Process Optimization</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2021 - 2025</div>
+                <h3 class="timeline-title">B.Tech Electronics & Communication Engineering</h3>
+                <div class="timeline-company">VIT Chennai</div>
+                <p class="timeline-description">
+                    Graduated with 8.7 CGPA, specializing in embedded systems, communication technologies, and software development. Completed multiple industry-relevant projects and earned certifications in Generative AI and programming languages.
+                </p>
+                <div class="timeline-skills">
+                    <span class="timeline-skill">ECE Fundamentals</span>
+                    <span class="timeline-skill">Embedded Systems</span>
+                    <span class="timeline-skill">Programming</span>
+                    <span class="timeline-skill">Data Structures</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <h2 class="section-title">Key Projects</h2>
+            <p class="section-subtitle">Innovative solutions showcasing technical expertise</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-image">🌊</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Enhanced LEACH-KMeans for UWSNs</h3>
+                    <p class="portfolio-description">Led 3-member team designing energy-efficient LEACH-KMeans clustering for Underwater Wireless Sensor Networks. Developed AUV trajectory planning improving data collection efficiency and evaluated performance using energy consumption metrics.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Clustering</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <div class="portfolio-image">📍</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Child Monitoring System - LoRa</h3>
+                    <p class="portfolio-description">Designed LoRa-based system for long-range, low-power child tracking with integrated GPS modules enabling real-time location monitoring. Created user-friendly interface for parent/guardian safety monitoring.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">LoRa</span>
+                        <span class="tag">GPS</span>
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">IoT</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <div class="portfolio-image">📄</div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">CareerCraft: ATS Resume Analyzer</h3>
+                    <p class="portfolio-description">Built AI-powered resume screening tool using Gemini language model with integrated NLP for qualification extraction and ATS-aligned insights. Delivered web interface streamlining HR candidate evaluation processes.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Gemini AI</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Web Dev</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Ready to collaborate or discuss opportunities</p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>I'm actively seeking opportunities in DevOps, software development, and data analytics. Whether you're looking for a dedicated team member or have an exciting project in mind, I'd love to hear from you.</p>
+                
+                <div class="contact-details">
+                    <h4>📧 Email</h4>
+                    <p>Charan.natraj2003@gmail.com</p>
+                </div>
+
+                <div class="contact-details">
+                    <h4>📱 Phone</h4>
+                    <p>+91 7305591723</p>
+                </div>
+
+                <div class="contact-details">
+                    <h4>💼 LinkedIn</h4>
+                    <p><a href="https://linkedin.com/in/charan-natraj" target="_blank" style="color: var(--primary);">linkedin.com/in/charan-natraj</a></p>
+                </div>
+
+                <div class="contact-details">
+                    <h4>📍 Location</h4>
+                    <p>Chennai, Tamil Nadu, India</p>
+                </div>
+
+                <div class="contact-details">
+                    <h4>🎓 Certifications</h4>
+                    <ul>
+                        <li>Generative AI - Vertex AI (Google & SmartInternz)</li>
+                        <li>C, Java, Python Training (IIT Bombay)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                    <input type="email" class="form-input" placeholder="Your Email" required>
+                    <input type="text" class="form-input" placeholder="Subject" required>
+                    <textarea class="form-textarea" rows="6" placeholder="Your message..." required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-copyright">
+            <p>© 2025 Charan Natraj N. All rights reserved.</p>
+        </div>
+        <div class="footer-credits">
+            <a href="mailto:Charan.natraj2003@gmail.com" class="footer-credit-link">Email</a>
+            <span style="color: var(--text-dim);">|</span>
+            <a href="https://linkedin.com/in/charan-natraj" target="_blank" class="footer-credit-link">LinkedIn</a>
+            <span style="color: var(--text-dim);">|</span>
+            <a href="tel:+917305591723" class="footer-credit-link">Phone</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
